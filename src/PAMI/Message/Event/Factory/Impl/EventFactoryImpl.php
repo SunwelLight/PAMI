@@ -56,7 +56,7 @@ class EventFactoryImpl
      *
      * @return EventMessage
      */
-    public static function createFromRaw($message)
+   public static function createFromRaw($message)
     {
         $eventStart = strpos($message, 'Event: ') + 7;
         $eventEnd = strpos($message, Message::EOL, $eventStart);
@@ -69,7 +69,7 @@ class EventFactoryImpl
         for ($i = 0; $i < $totalParts; $i++) {
             $parts[$i] = ucfirst($parts[$i]);
         }
-        $name = implode('', $parts);
+        $name = implode('', $parts);    # changed line
         $className = '\\PAMI\\Message\\Event\\' . $name . 'Event';
         if (class_exists($className, true)) {
             return new $className($message);
